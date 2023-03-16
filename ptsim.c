@@ -157,6 +157,24 @@ int main(int argc, char *argv[])
                 atoi(argv[i + 1]),
                 atoi(argv[i + 2]));
         }
+        else if (strcmp(argv[i], "kp") == 0)
+        {
+            int proc_num = atoi(argv[i + 1]);
+            // kill process proc_num
+        }
+        else if (strcmp(argv[i], "sb") == 0)
+        {
+            int proc_num = atoi(argv[i + 1]);
+            int addr = atoi(argv[i + 2]);
+            int value = atoi(argv[i + 3]);
+            // for process proc_num, store value at virtual address addr
+        }
+        else if (strcmp(argv[i], "lb") == 0)
+        {
+            int proc_num = atoi(argv[i + 1]);
+            int addr = atoi(argv[i + 2]);
+            // for process proc_num, get value at virtual address addr
+        }
     }
     return 0;
 }
