@@ -60,6 +60,19 @@ void kill_process(int process_number)
     (void)process_number;
 }
 
+void store_value(int process_number, int virtual_address, int value)
+{
+    (void)process_number;
+    (void)virtual_address;
+    (void)value;
+}
+
+void load_value(int process_number, int virtual_address)
+{
+    (void)process_number;
+    (void)virtual_address;
+}
+
 /**
  * Allocate pages for a new process,
  * this includes the new process page table and page_count data pages.
@@ -183,20 +196,15 @@ int main(int argc, char *argv[])
         else if (strcmp(argv[i], "sb") == 0)
         {
             int process_number = atoi(argv[i + 1]);
-            int address = atoi(argv[i + 2]);
+            int virtual_address = atoi(argv[i + 2]);
             int value = atoi(argv[i + 3]);
-            // for process process_number, store value at virtual address addr
-            printf("%d", process_number);
-            printf("%d", address);
-            printf("%d", value);
+            store_value(process_number, virtual_address, value);
         }
         else if (strcmp(argv[i], "lb") == 0)
         {
             int process_number = atoi(argv[i + 1]);
-            int address = atoi(argv[i + 2]);
-            // for process process_number, get value at virtual address addr
-            printf("%d", process_number);
-            printf("%d", address);
+            int virtual_address = atoi(argv[i + 2]);
+            load_value(process_number, virtual_address);
         }
     }
     return 0;
