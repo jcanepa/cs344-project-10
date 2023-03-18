@@ -5,7 +5,6 @@
  */
 int get_address(int page, int offset)
 {
-    // return page * PAGE_SIZE + offset // is this the same thing as bitshifting below?
     return (page << PAGE_SHIFT) | offset;
 }
 
@@ -43,6 +42,22 @@ int allocate_page(void)
         }
     }
     return 0xff; // sorry, no free pages
+}
+
+/**
+ * Deallocate a given page.
+ */
+void deallocate_page(int page)
+{
+    (void)page;
+}
+
+/**
+ * Kill a given process.
+ */
+void kill_process(int proc_num)
+{
+    (void)proc_num;
 }
 
 /**
@@ -153,13 +168,15 @@ int main(int argc, char *argv[])
         else if (strcmp(argv[i], "np") == 0)
         {
             // launch a new process n with an initial allocation of m pages
+            int process_number = atoi(argv[i + 1]);
+            int pages_requested = atoi(argv[i + 2]);
             new_process(
-                atoi(argv[i + 1]),
-                atoi(argv[i + 2]));
+                process_number,
+                pages_requested);
         }
         else if (strcmp(argv[i], "kp") == 0)
         {
-            int proc_num = atoi(argv[i + 1]);
+            // int proc_num = atoi(argv[i + 1]);
             // kill process proc_num
         }
         else if (strcmp(argv[i], "sb") == 0)
@@ -168,12 +185,17 @@ int main(int argc, char *argv[])
             int addr = atoi(argv[i + 2]);
             int value = atoi(argv[i + 3]);
             // for process proc_num, store value at virtual address addr
+            printf("%d", proc_num);
+            printf("%d", addr);
+            printf("%d", value);
         }
         else if (strcmp(argv[i], "lb") == 0)
         {
             int proc_num = atoi(argv[i + 1]);
             int addr = atoi(argv[i + 2]);
             // for process proc_num, get value at virtual address addr
+            printf("%d", proc_num);
+            printf("%d", addr);
         }
     }
     return 0;
