@@ -49,7 +49,7 @@ int allocate_page(void)
  */
 void deallocate_page(int page)
 {
-    (void)page;
+    mem[page] = 0;
 }
 
 /**
