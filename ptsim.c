@@ -182,20 +182,20 @@ int main(int argc, char *argv[])
         else if (strcmp(argv[i], "sb") == 0)
         {
             int process_number = atoi(argv[i + 1]);
-            int addr = atoi(argv[i + 2]);
+            int address = atoi(argv[i + 2]);
             int value = atoi(argv[i + 3]);
             // for process process_number, store value at virtual address addr
             printf("%d", process_number);
-            printf("%d", addr);
+            printf("%d", address);
             printf("%d", value);
         }
         else if (strcmp(argv[i], "lb") == 0)
         {
             int process_number = atoi(argv[i + 1]);
-            int addr = atoi(argv[i + 2]);
+            int address = atoi(argv[i + 2]);
             // for process process_number, get value at virtual address addr
             printf("%d", process_number);
-            printf("%d", addr);
+            printf("%d", address);
         }
     }
     return 0;
