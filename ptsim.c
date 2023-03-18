@@ -13,10 +13,11 @@ int get_address(int page, int offset)
  */
 void initialize_mem(void)
 {
-    memset(mem, 0, MEM_SIZE); // zero every byte in the mem array
+    // zero bytes
+    memset(mem, 0, MEM_SIZE);
 
     int zpfree_addr = get_address(0, 0);
-    mem[zpfree_addr] = 1; // mark reserved zero page as allocated
+    mem[zpfree_addr] = 1; // page zero allocated
 }
 
 /**
