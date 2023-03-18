@@ -106,8 +106,8 @@ void new_process(int process_number, int page_count)
         }
 
         // set page table to map virtual to physical
-        int pt_address = get_address(page_table, i);
-        mem[pt_address] = new_page;
+        int pointer_address = get_address(page_table, i);
+        mem[pointer_address] = new_page;
     }
 }
 
