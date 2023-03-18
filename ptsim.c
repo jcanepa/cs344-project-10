@@ -169,7 +169,6 @@ int main(int argc, char *argv[])
         }
         else if (strcmp(argv[i], "np") == 0)
         {
-            // launch a new process n with an initial allocation of m pages
             int process_number = atoi(argv[i + 1]);
             int pages_requested = atoi(argv[i + 2]);
             new_process(
