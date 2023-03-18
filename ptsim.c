@@ -69,13 +69,14 @@ void new_process(int process_number, int page_count)
     // get the page table page
     int page_table = allocate_page();
 
-    if (page_table == 0xff) // initial page table allocation failed
+    if (page_table == 0xff)
     {
+        // when initial page table allocation fails
         printf("OOM: proc %d: page table\n", process_number);
         return;
     }
 
-    // set this process's page table pointer in zero page
+    // set this process's page table pointer in page zero
     mem[64 + process_number] = page_table;
 
     // allocate data pages
@@ -84,8 +85,9 @@ void new_process(int process_number, int page_count)
         // physical page number
         int new_page = allocate_page();
 
-        if (new_page == 0xff) // page allocation failed
+        if (new_page == 0xff)
         {
+            // when page allocation fails
             printf("OOM: proc %d: data page\n", process_number);
             return;
         }
