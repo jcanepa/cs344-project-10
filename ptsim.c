@@ -198,13 +198,18 @@ int main(int argc, char *argv[])
             int process_number = atoi(argv[i + 1]);
             int virtual_address = atoi(argv[i + 2]);
             int value = atoi(argv[i + 3]);
-            store_value(process_number, virtual_address, value);
+            store_value(
+                process_number,
+                virtual_address,
+                value);
         }
         else if (strcmp(argv[i], "lb") == 0)
         {
             int process_number = atoi(argv[i + 1]);
             int virtual_address = atoi(argv[i + 2]);
-            load_value(process_number, virtual_address);
+            load_value(
+                process_number,
+                virtual_address);
         }
     }
     return 0;
