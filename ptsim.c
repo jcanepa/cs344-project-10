@@ -107,8 +107,14 @@ void store_value(int process_number, int virtual_address, int value)
 
 void load_value(int process_number, int virtual_address)
 {
-    (void)process_number;
-    (void)virtual_address;
+    int physical_address = get_physical_address(process_number, virtual_address);
+    int value = mem[physical_address];
+    printf(
+        "Load proc %d: %d => %d, value=%d\n",
+        process_number,
+        virtual_address,
+        physical_address,
+        value);
 }
 
 /**
