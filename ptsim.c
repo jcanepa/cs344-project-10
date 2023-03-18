@@ -77,6 +77,9 @@ void kill_process(int process_number)
     deallocate_page(page_table_page);
 }
 
+/**
+ * Get the physical address of a given process at some virtual address.
+ */
 int get_physical_address(int process_number, int virtual_address)
 {
     int process_page_table = get_address(mem[process_number + PAGE_COUNT], 0);
@@ -87,6 +90,9 @@ int get_physical_address(int process_number, int virtual_address)
         (physical_page << 8) | offset);
 }
 
+/**
+ * Store a given value of some process at a specified virtual address.
+ */
 void store_value(int process_number, int virtual_address, int value)
 {
     (void)process_number;
