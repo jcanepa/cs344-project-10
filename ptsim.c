@@ -217,15 +217,18 @@ int main(int argc, char *argv[])
     {
         if (strcmp(argv[i], "pfm") == 0)
         {
+            // "[p]rint [f]ree [m]ap"
             print_page_free_map();
         }
         else if (strcmp(argv[i], "ppt") == 0)
         {
+            // "[p]rint [p]age [t]able"
             int process_number = atoi(argv[++i]);
             print_page_table(process_number);
         }
         else if (strcmp(argv[i], "np") == 0)
         {
+            // [n]ew [p]rocess
             int process_number = atoi(argv[i + 1]);
             int pages_requested = atoi(argv[i + 2]);
             new_process(
@@ -234,11 +237,13 @@ int main(int argc, char *argv[])
         }
         else if (strcmp(argv[i], "kp") == 0)
         {
+            // [k]ill [p]rocess
             int process_number = atoi(argv[i + 1]);
             kill_process(process_number);
         }
         else if (strcmp(argv[i], "sb") == 0)
         {
+            // [s]tore [b]
             int process_number = atoi(argv[i + 1]);
             int virtual_address = atoi(argv[i + 2]);
             int value = atoi(argv[i + 3]);
@@ -249,6 +254,7 @@ int main(int argc, char *argv[])
         }
         else if (strcmp(argv[i], "lb") == 0)
         {
+            // [l]oad [b]
             int process_number = atoi(argv[i + 1]);
             int virtual_address = atoi(argv[i + 2]);
             load_value(
