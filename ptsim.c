@@ -77,6 +77,12 @@ void kill_process(int process_number)
     deallocate_page(page_table_page);
 }
 
+int get_physical_address(int process_number, int virtual_address)
+{
+    (void)process_number;
+    (void)virtual_address;
+}
+
 void store_value(int process_number, int virtual_address, int value)
 {
     (void)process_number;
