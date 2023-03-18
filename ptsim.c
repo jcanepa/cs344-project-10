@@ -177,8 +177,8 @@ int main(int argc, char *argv[])
         }
         else if (strcmp(argv[i], "kp") == 0)
         {
-            // int process_number = atoi(argv[i + 1]);
-            // kill process process_number
+            int process_number = atoi(argv[i + 1]);
+            kill_process(process_number);
         }
         else if (strcmp(argv[i], "sb") == 0)
         {
