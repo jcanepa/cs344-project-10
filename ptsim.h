@@ -14,7 +14,7 @@ unsigned char mem[MEM_SIZE];
 
 int get_address(int page, int offset);
 void initialize_mem(void);
-unsigned char get_page_table(int proc_num);
-void new_process(int proc_num, int page_count);
+unsigned char get_page_table(int process_number);
+void new_process(int process_number, int page_count);
 void print_page_free_map(void);
-void print_page_table(int proc_num);
+void print_page_table(int process_number);
