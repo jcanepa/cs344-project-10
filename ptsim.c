@@ -58,7 +58,23 @@ void deallocate_page(int page)
  */
 void kill_process(int process_number)
 {
-    (void)process_number;
+    int page_table_page = get_page_table(process_number);
+
+    int process_page_table = get_address(
+        page_table_page,
+        0);
+
+    int bound = process_page_table + PAGE_SIZE;
+
+    for (int i = process_page_table; i < bound; i++)
+    {
+        if (mem[i] != 0)
+        {
+            deallocate_page(
+                mem[i]);
+        }
+    }
+    deallocate_page(page_table_page);
 }
 
 void store_value(int process_number, int virtual_address, int value)
