@@ -79,8 +79,12 @@ void kill_process(int process_number)
 
 int get_physical_address(int process_number, int virtual_address)
 {
-    (void)process_number;
-    (void)virtual_address;
+    int process_page_table = get_address(mem[process_number + PAGE_COUNT], 0);
+    int virtual_page = virtual_address >> 8;
+    int offset = virtual_address & 255;
+    int physical_page = mem[process_page_table + virtual_page];
+    return ( // physical address
+        (physical_page << 8) | offset);
 }
 
 void store_value(int process_number, int virtual_address, int value)
