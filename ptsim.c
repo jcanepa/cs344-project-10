@@ -22,9 +22,9 @@ void initialize_mem(void)
 /**
  * Get the page table page for a given process
  */
-unsigned char get_page_table(int proc_num)
+unsigned char get_page_table(int process_number)
 {
-    int ptp_addr = get_address(0, PTP_OFFSET + proc_num);
+    int ptp_addr = get_address(0, PTP_OFFSET + process_number);
     return mem[ptp_addr];
 }
 
@@ -55,28 +55,28 @@ void deallocate_page(int page)
 /**
  * Kill a given process.
  */
-void kill_process(int proc_num)
+void kill_process(int process_number)
 {
-    (void)proc_num;
+    (void)process_number;
 }
 
 /**
  * Allocate pages for a new process,
  * this includes the new process page table and page_count data pages.
  */
-void new_process(int proc_num, int page_count)
+void new_process(int process_number, int page_count)
 {
     // get the page table page
     int page_table = allocate_page();
 
     if (page_table == 0xff) // initial page table allocation failed
     {
-        printf("OOM: proc %d: page table\n", proc_num);
+        printf("OOM: proc %d: page table\n", process_number);
         return;
     }
 
     // set this process's page table pointer in zero page
-    mem[64 + proc_num] = page_table;
+    mem[64 + process_number] = page_table;
 
     // allocate data pages
     for (int i = 0; i < page_count; i++)
@@ -86,7 +86,7 @@ void new_process(int proc_num, int page_count)
 
         if (new_page == 0xff) // page allocation failed
         {
-            printf("OOM: proc %d: data page\n", proc_num);
+            printf("OOM: proc %d: data page\n", process_number);
             return;
         }
 
@@ -106,9 +106,9 @@ void print_page_free_map(void)
 
     for (int i = 0; i < 64; i++)
     {
-        int addr = get_address(0, i);
+        int address = get_address(0, i);
 
-        printf("%c", mem[addr] == 0 ? '.' : '#');
+        printf("%c", mem[address] == 0 ? '.' : '#');
 
         if ((i + 1) % 16 == 0)
             putchar('\n');
@@ -118,12 +118,12 @@ void print_page_free_map(void)
 /**
  * Print the address map from virtual pages to physical (don't modify)
  */
-void print_page_table(int proc_num)
+void print_page_table(int process_number)
 {
-    printf("--- PROCESS %d PAGE TABLE ---\n", proc_num);
+    printf("--- PROCESS %d PAGE TABLE ---\n", process_number);
 
     // Get the page table for this process
-    int page_table = get_page_table(proc_num);
+    int page_table = get_page_table(process_number);
 
     // Loop through, printing out used pointers
     for (int i = 0; i < PAGE_COUNT; i++)
@@ -162,8 +162,8 @@ int main(int argc, char *argv[])
         }
         else if (strcmp(argv[i], "ppt") == 0)
         {
-            int proc_num = atoi(argv[++i]);
-            print_page_table(proc_num);
+            int process_number = atoi(argv[++i]);
+            print_page_table(process_number);
         }
         else if (strcmp(argv[i], "np") == 0)
         {
@@ -176,25 +176,25 @@ int main(int argc, char *argv[])
         }
         else if (strcmp(argv[i], "kp") == 0)
         {
-            // int proc_num = atoi(argv[i + 1]);
-            // kill process proc_num
+            // int process_number = atoi(argv[i + 1]);
+            // kill process process_number
         }
         else if (strcmp(argv[i], "sb") == 0)
         {
-            int proc_num = atoi(argv[i + 1]);
+            int process_number = atoi(argv[i + 1]);
             int addr = atoi(argv[i + 2]);
             int value = atoi(argv[i + 3]);
-            // for process proc_num, store value at virtual address addr
-            printf("%d", proc_num);
+            // for process process_number, store value at virtual address addr
+            printf("%d", process_number);
             printf("%d", addr);
             printf("%d", value);
         }
         else if (strcmp(argv[i], "lb") == 0)
         {
-            int proc_num = atoi(argv[i + 1]);
+            int process_number = atoi(argv[i + 1]);
             int addr = atoi(argv[i + 2]);
-            // for process proc_num, get value at virtual address addr
-            printf("%d", proc_num);
+            // for process process_number, get value at virtual address addr
+            printf("%d", process_number);
             printf("%d", addr);
         }
     }
