@@ -128,9 +128,9 @@ void print_page_table(int process_number)
     // Loop through, printing out used pointers
     for (int i = 0; i < PAGE_COUNT; i++)
     {
-        int addr = get_address(page_table, i);
+        int address = get_address(page_table, i);
 
-        int page = mem[addr];
+        int page = mem[address];
 
         if (page != 0)
         {
