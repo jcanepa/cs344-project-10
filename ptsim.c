@@ -95,9 +95,14 @@ int get_physical_address(int process_number, int virtual_address)
  */
 void store_value(int process_number, int virtual_address, int value)
 {
-    (void)process_number;
-    (void)virtual_address;
-    (void)value;
+    int physical_address = get_physical_address(process_number, virtual_address);
+    mem[physical_address] = value;
+    printf(
+        "Store proc %d: %d => %d, value=%d\n",
+        process_number,
+        virtual_address,
+        physical_address,
+        value);
 }
 
 void load_value(int process_number, int virtual_address)
